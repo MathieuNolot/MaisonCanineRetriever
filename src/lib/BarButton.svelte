@@ -6,6 +6,7 @@
   import { faHouse, faDog, faShop, faCartShopping } from '@fortawesome/free-solid-svg-icons';  // faPaw
 
   export let value: string;
+  export let isMobile: boolean;
 
   $: isSelected = $page.route.id === `/${value === 'acceuil' ? '' : value}`;
   $: icon = value === 'boutique' ? faShop : value === 'acceuil' ? faHouse : value === 'panier' ? faCartShopping : faDog
@@ -21,10 +22,8 @@
 >
   <Fa icon={icon} />
 
-  {#if value !== 'panier'}
-    <h1 class="opacity-0 w-0 h-0 md:opacity-100 md:w-fit md:h-fit">
-      {value.charAt(0).toUpperCase() + value.slice(1)}
-    </h1>
+  {#if !isMobile && value !== 'panier'}
+    {value.charAt(0).toUpperCase() + value.slice(1)}
   {/if}
 
 </a>
