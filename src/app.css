@@ -27,3 +27,8 @@ div.topSafeMargin {
 div.bottomSafeMargin {
   margin-bottom: env(safe-area-inset-bottom);
 }
+
+div.contentHeight {
+  /* height: calc(100vh - 64px - env(safe-area-inset-bottom)); */
+  height: calc(100vh - 0px - env(safe-area-inset-bottom));
+}

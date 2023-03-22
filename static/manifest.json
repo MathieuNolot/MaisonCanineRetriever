@@ -24,9 +24,9 @@
         "type": "image/png"
     }
   ],
-  "background_color": "#FAFAFA",
+  "background_color": "#27272A",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#FAFAFA",
+  "theme_color": "#27272A",
   "description": "Maison Canine Retriever"
 }

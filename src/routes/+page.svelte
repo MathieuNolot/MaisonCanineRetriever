@@ -1,8 +1,6 @@
 <script lang="ts">
 
-  import { fly } from "svelte/transition";
-
-  import Title from "../lib/Title.svelte";
+  import FirstSection from "../lib/homePage/firstSection/firstSection.svelte";
 
   let width: number;
 
@@ -10,95 +8,83 @@
 
 </script>
 
-<main>
+<main class="topSafeMargin">
 
-  <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-12 md:gap-0 md:justify-evenly center h-screen w-screen relative subpixel-antialiased bg-neutral-50">
+  <FirstSection isMobile={isMobile} />
 
-    <div class="w-10/12 md:w-1/3 flex flex-col gap-5 items-start justify-between md:justify-start select-none">
+  <div class="flex items-center justify-evenly center contentHeight w-screen relative subpixel-antialiased bg-neutral-50 -translate-y-[1px]">
+    <h1 class="text-3xl font-semibold bg-slate-800 h-full flex flex-col lg:flex-row items-center justify-evenly p-8 text-center w-full overflow-clip">
 
-    {#if !isMobile}
-    <div
-      in:fly={{ delay: 50, duration: 750, y: -1000}}
-      class="w-full flex items-center justify-between select-none"
-    >
-      <Title />
-      <img
-        class="w-1/3 rounded-2xl hover:scale-[1.02] transition-all duration-500"
-        src="/logo.jpg"
-        alt="Maison Canine Retriever"
-      />
-    </div>
-    {/if}
+      <div class="w-[96%] sm:w-[80%] md:w-[60%] lg:w-[40%] xl:w-1/3 flex flex-col gap-3 transition-all duration-300">
 
-      <h1
-        in:fly={{ delay: 50, duration: 750, x: -1000}}
-        class="text-xl md:text-3xl font-medium text-slate-300"
-      >
-        Offrez à votre chien le meilleur séjour possible chez Maison Canine Retriever
-      </h1>
-
-      <div
-        in:fly={{ delay: 50, duration: 750, y: 1000}}
-        class="flex items-center justify-around md:justify-start w-full mb-10 md:ml-2 mt-4 gap-6"
-      >
-        <button
-          type="button"
-          class="
-            bg-indigo-400 text-lg font-semibold px-5 py-2 rounded-2xl text-white
-            hover:scale-105 transition-all duration-150
-            active:scale-95"
-        >
-          Réserver une pension
-        </button>
-
-        <button
-          type="button"
-          class="
-            bg-neutral-100 text-lg font-semibold px-5 py-2 rounded-2xl text-[#8E8C8A]
-            hover:scale-105 transition-all duration-150
-            active:scale-95"
-        >
-          Boutique animalière
-        </button>
-      </div>
-
-    </div>
-
-    <img
-      in:fly={{ delay: 50, duration: 750, x: 1000}}
-      class="w-10/12 md:w-1/2 rounded-md md:rounded-lg shadow-lg shadow-zinc-700 md:hover:scale-105 transition-all duration-1000 cursor-pointer"
-      src="https://static.wixstatic.com/media/904a44_77701463ce204e66a6aa41032d1ef889~mv2.jpeg/v1/fill/w_940,h_520,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/IMG_0279.jpeg"
-      alt="Maison Canine Retriever"
-    />
-
-    {#if isMobile}
-      <div
-        in:fly={{ delay: 50, duration: 750, y: -1000}}
-        class="w-10/12 flex flex-row-reverse items-center justify-around select-none"
-      >
-        <Title />
         <img
-          class="w-1/2 rounded-xl"
-          src="/logo.jpg"
-          alt="Maison Canine Retriever"
+          class="aspect-square rounded-xl shadow-xl"
+          src="jason.webp"
+          alt="Jason"
         />
-      </div>
-    {/if}
 
+        <div class="
+          text-neutral-400
+          text-center
+          text-xs
+          sm:text-md
+          md:text-lg
+          lg:text-xl
+        ">
+          Jason Menier, votre gérant dévoué et passionné chez Maison Canine Retriever.
+        </div>
+
+      </div>
+
+      <div
+        class="
+          text-center w-full lg:w-1/2 text-white textFont flex flex-col gap-4 lg:gap-8 transition-all duration-300
+          text-xl
+          sm:text-xl
+          md:text-2xl
+          lg:text-4xl
+        "
+      >
+
+        <div>Avec un sourire chaleureux et un cœur plein d'amour pour nos invités à fourrure, je m'engage à créer une expérience de chez-soi sûre, confortable et engageante.</div>
+        <div>Rassurez-vous, vos animaux de compagnie bien-aimés sont entre des mains attentionnées et expérimentées.</div>
+
+        <div class="
+          text-center pt-6
+          text-2xl
+          sm:text-2xl
+          md:text-3xl
+          lg:text-5xl
+        ">
+          Bienvenue dans notre famille !
+        </div>
+
+      </div>
+
+    </h1>
   </div>
 
-  <div class="flex items-center justify-evenly center h-screen w-screen relative subpixel-antialiased bg-neutral-50">
-
-    <h1 class="text-3xl font-semibold">
-      Présentation de la pension et de vous ?
+  <div class="flex items-center justify-evenly center contentHeight w-screen relative subpixel-antialiased bg-neutral-50">
+    <h1 class="text-3xl font-semibold bg-rose-100 h-full flex items-center justify-center p-8 text-center w-full">
+      Présentation de la pension
     </h1>
+  </div>
 
-    <div>
-      Map
-    </div>
-
+  <div class="flex items-center justify-evenly center contentHeight w-screen relative subpixel-antialiased bg-neutral-50">
+    <h1 class="text-3xl font-semibold bg-fuchsia-100 h-full flex items-center justify-center p-8 text-center w-full">
+      Gallerie de chiens
+    </h1>
   </div>
 
 </main>
 
 <svelte:window bind:innerWidth={width} />
+
+<style>
+  @import url('https://fonts.cdnfonts.com/css/made-mirage');
+
+  .textFont {
+    font-family: 'MADE Mirage', sans-serif;
+  }
+
+</style>
