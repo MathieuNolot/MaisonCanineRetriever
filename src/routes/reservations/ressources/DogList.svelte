@@ -25,7 +25,7 @@
 
   <div class="w-full flex items-center justify-between">
 
-    <div class="text-xl font-semibold text-white titleFont">
+    <div class="text-xl font-semibold text-white titleFont pl-1">
       Chiens
     </div>
 
@@ -33,7 +33,7 @@
       <button
         on:click={clearDogs}
         class="
-          text-2xl font-semibold text-zinc-500 pr-2
+          text-2xl font-semibold text-zinc-500 pr-2 -translate-y-[2px]
           md:hover:scale-105 active:scale-90 transition-all duration-300
         "
       >

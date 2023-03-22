@@ -2,6 +2,8 @@
 
   import "../app.css";
 
+  import { fly } from "svelte/transition";
+
   import { onMount } from "svelte";
   import { page } from "$app/stores";
 
@@ -16,14 +18,14 @@
 
   let openMobileMenu = false;  // false
 
+  let isMobilePWA = false;
+
   // $: isMobile = width < 768
   $: showMobileBar = width < 768 ? openMobileMenu ? true : $page.route.id === '/' ? scrollY > 100 : true : scrollY > 100;
 
   onMount(() => {
     if (window.matchMedia('(display-mode: standalone)').matches) {
-      console.log("This is running as standalone.");
-    } else {
-      console.log("This is running on safari");
+      if (width < 768) isMobilePWA = true
     }
   });
 
@@ -31,32 +33,61 @@
 
 <div class="flex flex-col-reverse md:flex-col">
 
-  <!-- {#if width != null} -->
-    <!-- <div class="flex items-center justify-center bg-neutral-100 drop-shadow-xl bottomSafePadding">
+  {#if isMobilePWA}
 
-      <div class="flex items-center justify-between w-full px-8 h-16">
-
-        {#if !isMobile}
-          <BarButton value="acceuil" isMobile={isMobile} />
-        {/if}
-
-        <div class="
-          flex items-center justify-around md:justify-end gap-12 w-full md:w-fit
-        "
-        >
-          {#if isMobile}
-            <BarButton value="acceuil" isMobile={isMobile} />
-          {/if}
-
-          <BarButton value="reservations" isMobile={isMobile} />
-          <BarButton value="boutique" isMobile={isMobile} />
-          <BarButton value="panier" isMobile={isMobile} />
-
-        </div>
+    <div
+      class="
+        fixed bottom-0 left-0 right-0 z-[55] bg-zinc-800 shadow-xl bottomSafePadding
+        flex flex-col
+      "
+    >
+      <div class="w-full h-[1px] bg-zinc-700">
 
       </div>
 
-    </div> -->
+      <div
+        class="w-full flex items-center justify-around h-16 gap-1"
+      >
+        <BarButton value="acceuil" isMobile={true} isMobilePWA={true} bind:close={openMobileMenu} />
+        <BarButton value="reservations" isMobile={true} isMobilePWA={true} bind:close={openMobileMenu} />
+        <BarButton value="boutique" isMobile={true} isMobilePWA={true} bind:close={openMobileMenu} />
+        <BarButton value="panier" isMobile={true} isMobilePWA={true} bind:close={openMobileMenu} />
+      </div>
+
+    </div>
+
+    {#if $page.route.id !== '/'}
+      <div
+        in:fly={{ delay: 10, duration: 1500, y: -1000}}
+        class="
+          fixed top-0 right-0 left-0 z-50 flex items-center justify-center bg-zinc-800
+          -translate-y-[1px] sm:translate-y-0 topSafePadding
+        "
+      >
+
+        <a
+          href="/"
+          class="
+            titleFont text-white text-lg translate-y-[2px] {showMobileBar ? '' : 'opacity-0'} flex items-center
+            md:hover:scale-105 active:scale-90 transition-all duration-300 pt-3 pb-[10px]
+          "
+        >
+
+          <img
+            class="w-10 h-10 -translate-x-4 rounded-full md:hover:scale-[1.03] transition-all duration-500"
+            src="/logo.webp"
+            alt="Maison Canine Retriever"
+          />
+
+          <div>Maison Canine Retriever</div>
+
+        </a>
+
+      </div>
+    {/if}
+
+  {:else}
+
     <div
       class="
         fixed top-0 right-0 left-0 z-50 px-8 sm:h-16 flex items-center {showMobileBar ? 'bg-zinc-800 shadow-lg' : ''}
@@ -147,7 +178,7 @@
       />
     {/if}
 
-  <!-- {/if} -->
+  {/if}
 
 </div>
 

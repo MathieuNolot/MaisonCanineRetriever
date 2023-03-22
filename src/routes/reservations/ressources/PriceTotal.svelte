@@ -20,6 +20,10 @@
 
   $: reduction = dogs > 1 ? total - (total * .1) : total
 
+  function book() {
+
+  }
+
 </script>
 
 <div
@@ -45,21 +49,27 @@
         {reduction}€
       </div>
 
-      <div
-        class="text-base line-through titleFont text-red-500"
-      >
-        {total}€
-      </div>
+      {#if reduction != total}
+        <div
+          class="text-base line-through titleFont text-red-500"
+        >
+          {total}€
+        </div>
+      {/if}
 
     </div>
 
   </div>
 
-  <div
-    class="text-2xl font-semibold titleFont bg-indigo-400 px-5 py-3 shadow-lg rounded-xl translate-y-1"
+  <button
+    on:click={book}
+    class="
+      text-2xl font-semibold titleFont {reduction > 0 ? 'bg-indigo-400' : 'bg-zinc-700 text-zinc-200/10'} px-5 py-3 shadow-lg rounded-xl translate-y-1
+      md:hover:scale-105 active:scale-90 transition-all duration-300
+    "
   >
     Réserver
-  </div>
+  </button>
 
 </div>
 

@@ -8,6 +8,7 @@
 
   export let value: string;
   export let isMobile: boolean;
+  export let isMobilePWA: boolean = false;
   export let close: boolean;
 
   $: isSelected = $page.route.id === `/${value === 'acceuil' ? '' : value}`;
@@ -23,17 +24,17 @@
 <button
   on:click={press}
   class="
-    {isSelected ? '' : 'md:hover:scale-105'}
-    active:scale-90
+    {isSelected ? '' : 'md:hover:scale-105 active:scale-90'}
     text-lg font-semibold
     flex items-center gap-3
     {isSelected ? 'text-neutral-400' : 'text-white md:hover:text-indigo-400'}
     transition-all duration-150
+    {isMobilePWA ? 'w-full h-full flex items-center justify-center' : ''}
   "
 >
   <Fa icon={icon} />
 
-  {#if isMobile || value !== 'panier'}
+  {#if !isMobilePWA && (isMobile || value !== 'panier')}
     {value.charAt(0).toUpperCase() + value.slice(1)}
   {/if}
 
