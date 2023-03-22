@@ -98,7 +98,13 @@
       >
 
         <div class="w-full flex items-center justify-between h-16">
-          <div class="titleFont text-white text-lg translate-y-[2px] {showMobileBar ? '' : 'opacity-0'} flex items-center transition-all duration-300">
+          <a
+            href="/"
+            class="
+              titleFont text-white text-lg translate-y-[2px] {showMobileBar ? '' : 'opacity-0'} flex items-center
+              md:hover:scale-105 active:scale-90 transition-all duration-300
+            "
+          >
 
             <img
               class="w-10 h-10 -translate-x-4 rounded-full md:hover:scale-[1.03] transition-all duration-500"
@@ -108,7 +114,7 @@
 
             <div>Maison Canine Retriever</div>
 
-          </div>
+          </a>
 
           <button
             on:click={() => { openMobileMenu = !openMobileMenu }}
@@ -141,13 +147,11 @@
       />
     {/if}
 
-    <div class="">
-      <slot />
-    </div>
-
   <!-- {/if} -->
 
 </div>
+
+<slot />
 
 <svelte:window bind:innerWidth={width} bind:scrollY={scrollY} />
 

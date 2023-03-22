@@ -18,6 +18,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.14",
+		"date-fns": "^2.29.3",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
@@ -37,6 +38,7 @@
 		"@fortawesome/free-brands-svg-icons": "^6.3.0",
 		"@fortawesome/free-solid-svg-icons": "^6.3.0",
 		"@sveltejs/adapter-vercel": "^2.3.1",
-		"firebase-tools": "^11.24.1"
+		"firebase-tools": "^11.24.1",
+		"remove": "^0.1.5"
 	}
 }

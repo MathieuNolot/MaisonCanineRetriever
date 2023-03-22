@@ -1,61 +1,66 @@
 <script lang="ts">
 
   import Fa from 'svelte-fa/src/fa.svelte';
-  import { faDog, faXmark } from '@fortawesome/free-solid-svg-icons';
+  import { faDog, faXmark, faMinus, faPlus, faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 
-  import type { Dog } from '../../../lib/Interfaces/Dog';
+  // import type { Dog } from '../../../lib/Interfaces/Dog';
 
-  import DogSelector from './DogSelector.svelte';
+  import DogCount from './DogCount.svelte';
 
-  export let dogs: Dog[];
+  export let smallDogs: number;
+  export let bigDogs: number;
+
+  function clearDogs() {
+    smallDogs = 0;
+    bigDogs = 0;
+  }
 
 </script>
 
-<div class="w-11/12 md:w-full flex flex-col items-center justify-center {dogs.length > 0 ? 'pb-6' : 'pb-2'}">
+<div
+  class="
+    w-11/12 flex flex-col items-center justify-center gap-3 pb-2 pt-6
+  "
+>
 
-  <div class="text-lg font-semibold w-full pb-2">
-    {dogs.length > 1 ? `Mes ${dogs.length} chiens:` : 'Mon chien:'}
-  </div>
+  <div class="w-full flex items-center justify-between">
 
-  <div class="flex flex-col items-center w-full gap-1 px-1">
-    {#each dogs as dog, index}
+    <div class="text-xl font-semibold text-white titleFont">
+      Chiens
+    </div>
 
-      {#if index != 0}
-        <div class="w-6/12 h-[1px] bg-neutral-200"></div>
-      {/if}
-
-      <div class="flex gap-2 items-center justify-between w-full h-11">
-
-        <div class="flex gap-3 items-center">
-          <div class="w-6 flex items-center justify-center">
-            <Fa icon={faDog} class="{dog.moreThan20Kg ? 'text-xl' : 'text-sm'}" />
-          </div>
-
-          <div class="text-lg font-semibold">
-            {dog.name}
-          </div>
-        </div>
-
-        <div class="font-medium">
-          {dog.moreThan20Kg ? '25' : '20'}€ / jour
-        </div>
-
-        <button
-          on:click={() => { dogs = dogs.filter(x => x != dog ) }}
-          class=""
-        >
-          <Fa icon={faXmark} />
-        </button>
-      </div>
-
-    {/each}
-
-    <div class="w-10/12 h-[1px] bg-neutral-200 my-[1px]"></div>
-
-    <DogSelector
-      bind:dogs
-    />
+    {#if smallDogs > 0 || bigDogs > 0}
+      <button
+        on:click={clearDogs}
+        class="
+          text-2xl font-semibold text-zinc-500 pr-2
+          md:hover:scale-105 active:scale-90 transition-all duration-300
+        "
+      >
+        <Fa icon={faXmarkCircle} />
+      </button>
+    {/if}
 
   </div>
+
+  <DogCount
+    isSmall={false}
+    bind:dogs={bigDogs}
+  />
+
+  <DogCount
+    isSmall={true}
+    bind:dogs={smallDogs}
+  />
 
 </div>
+
+<style>
+
+  @import url('https://fonts.cdnfonts.com/css/made-dillan');
+
+  .titleFont {
+    font-family: 'MADE Dillan', sans-serif;
+  }
+
+</style>

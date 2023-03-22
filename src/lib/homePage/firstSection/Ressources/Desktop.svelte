@@ -45,7 +45,9 @@
         "
       >
         <img
-          class="w-1/3 rounded-full md:hover:scale-[1.03] transition-all duration-500"
+          on:click={() => { window.open('https://maps.google.com/?q=48%20Avenue%20Pierre%20Mendès-France,%2002000%20Laon', '_blank') }}
+          on:keypress={() => { }}
+          class="w-1/3 rounded-full md:hover:scale-[1.03] active:scale-90 transition-all duration-500 cursor-pointer"
           src="/logo.webp"
           alt="Maison Canine Retriever"
         />

@@ -51,13 +51,14 @@
   }
 
   $: days = getMonthDays(currentMonth, currentYear);
+  $: month = currentDate.toLocaleDateString('fr-FR', { month: "long" })
 
   const weekdays = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
 
 </script>
 
-<div class="w-full flex flex-col items-center select-none h-full bg-[#FE352A] rounded-lg shadow-lg overflow-clip">
-  <div class="w-full flex justify-between items-center py-3 shadow-lg text-white font-semibold text-lg">
+<div class="w-full flex flex-col items-center select-none h-full bg-zinc-900 rounded-xl shadow-lg overflow-clip">
+  <div class="w-full flex justify-center items-center pt-3 text-white font-semibold text-lg">
 
     <button
       on:click={() => changeMonth(-1)}
@@ -66,7 +67,10 @@
       <Fa icon={faChevronLeft} />
     </button>
 
-    <span>{format(currentDate, "MMMM yyyy", {locale: fr})}</span>
+    <!-- <span>{currentDate.toLocaleDateString('fr-FR', { month: "long", year: "numeric" })}</span> -->
+    <span class="w-20 flex items-center justify-center">
+      {month.charAt(0).toUpperCase() + month.slice(1)}
+    </span>
 
     <button
       on:click={() => changeMonth(1)}
@@ -77,15 +81,15 @@
 
   </div>
 
-  <div class="grid grid-cols-7 w-full gap-[2px] bg-neutral-200">
+  <!-- <div class="grid grid-cols-7 w-full gap-[2px]">
     {#each weekdays as weekday}
-      <div class="flex items-center justify-center bg-white text-slate-900 font-semibold py-1">
+      <div class="flex items-center justify-center bg-zinc-700/40 text-zinc-50 font-semibold py-1 rounded-md">
         {weekday}
       </div>
     {/each}
-  </div>
+  </div> -->
 
-  <div class="grid grid-cols-7 gap-[2px] w-full h-full bg-neutral-200">
+  <div class="grid grid-cols-7 gap-[8px] w-full h-full px-2 pb-3">
     {#each Array(getDayIndex(days[0])).fill(null) as _, index}
       <div class="
         flex items-center justify-center w-full h-full
@@ -96,17 +100,20 @@
     {#each days as day (day)}
       <button
         class="
-          flex items-center justify-center w-full h-full cursor-pointer font-semibold rounded-sm
+          flex items-center justify-center w-full aspect-square cursor-pointer font-semibold rounded-full
           {isInPast(day) ?
-            'bg-transparent cursor-not-allowed text-neutral-300'
+            'bg-transparent cursor-not-allowed text-zinc-600/80'
             : selectedDates.includes(dateToString(day))
             ? 'bg-indigo-400 text-white'
-            : 'bg-neutral-100'
+            : 'bg-transparent text-white'
           }
         "
         on:click={() => toggleDate(day)}
       >
-        {format(day, "d", {locale: fr})}
+        <div class="">
+          {format(day, "d")}
+        </div>
+
       </button>
     {/each}
   </div>
