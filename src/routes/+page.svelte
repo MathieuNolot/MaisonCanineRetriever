@@ -66,13 +66,13 @@
 
   <div class="flex items-center justify-evenly center contentHeight w-screen relative subpixel-antialiased bg-neutral-50">
     <h1 class="text-3xl font-semibold bg-rose-100 h-full flex items-center justify-center p-8 text-center w-full">
-      Présentation de la pension
+      Présentation de la pension, avantages, nombre de pieces, m2, etc..?
     </h1>
   </div>
 
   <div class="flex items-center justify-evenly center contentHeight w-screen relative subpixel-antialiased bg-neutral-50">
     <h1 class="text-3xl font-semibold bg-fuchsia-100 h-full flex items-center justify-center p-8 text-center w-full">
-      Gallerie de chiens
+      Galerie de chiens
     </h1>
   </div>
 

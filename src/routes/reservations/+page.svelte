@@ -28,41 +28,45 @@
 
 </script>
 
-<div class="relative select-none w-full h-[calc(100vh-64px)] flex flex-col md:flex-row items-center justify-start topSafePadding mt-16">
+<div class="relative select-none w-full h-[calc(100vh-64px)] flex flex-col lg:flex-row items-center justify-start topSafePadding mt-16">
 
   <!-- <div class="text-xl font-semibold text-white titleFont pl-1 translate-y-3 w-11/12">
     Dates
   </div> -->
 
-  <div class="w-11/12 pt-6">
+  <div class="w-11/12 md:w-8/12 pt-6 lg:pl-6">
     <Calendar
       bind:selectedDates
     />
   </div>
 
-      <!-- <div class="w-10/12 bg-zinc-600/30 h-[1px] my-3" /> -->
-
-  <DogList
-    bind:smallDogs
-    bind:bigDogs
-  />
-
-      <!-- <div class="w-10/12 bg-zinc-600/30 h-[1px] my-3" /> -->
-
   <div
-    class="w-11/12 flex items-center justify-center"
+    class="
+      w-full flex flex-col items-center lg:justify-around lg:h-1/2 xl:h-3/4 transition-all duration-300
+    "
   >
-    <PriceTotal
-      smallDogs={smallDogs}
-      bigDogs={bigDogs}
-      selectedDates={selectedDates}
+
+    <DogList
+      bind:smallDogs
+      bind:bigDogs
     />
 
-  </div>
+    <div
+      class="w-11/12 flex items-center justify-center pb-8"
+    >
+      <PriceTotal
+        smallDogs={smallDogs}
+        bigDogs={bigDogs}
+        selectedDates={selectedDates}
+      />
+
+    </div>
 
 </div>
 
-<style>
+</div>
+
+<!-- <style>
 
   @import url('https://fonts.cdnfonts.com/css/made-dillan');
 
@@ -70,4 +74,4 @@
     font-family: 'MADE Dillan', sans-serif;
   }
 
-</style>
+</style> -->
